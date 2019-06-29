@@ -2,7 +2,7 @@
 	<div class="container py-3">
 		<div class="nav-items d-flex justify-content-between">
 			<div class="nav-item">
-				<a href="/">Home</a>
+				<a href="{{ route('home') }}">Home</a>
 			</div>
 
 			<div class="nav-item">
