@@ -1,0 +1,116 @@
+html, body {
+    color: $textColor;
+    font-family: $secondaryFont;
+    font-size: $fontSize;
+    font-weight: 400;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $primaryFont;
+    line-height: 1.5em;
+}
+
+h1 {
+    color: $primaryOrange;
+    font-size: 2.25em;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: 200;
+}
+
+h4 {
+    font-size: 1.25em;
+    font-weight: 200;
+}
+
+p {
+    line-height: 1.6em;
+    margin: 0 auto 1em auto;
+    color: $textColor;
+    font-weight: 300;
+}
+
+a {
+    text-decoration: none;
+    color: $primaryBlue;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
+}
+
+li {
+    line-height: 1.8em;
+    font-weight: 300;
+    font-size: $fontSize;
+}
+
+.print-hide {
+    @media print {
+        display: none;
+    }
+}
+
+.print-display {
+    display: none;
+
+    @media print {
+        display: block;
+    }
+}
+
+.strong {
+    font-weight: 700;
+}
+
+.text-caps {
+    text-transform: uppercase;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.vertical-align-row {
+    display: flex;
+    align-items: center;
+
+    @media #{$mobile} {
+        display: block;
+    }
+}
+
+[v-cloak] {
+    display: none;
+}
+
