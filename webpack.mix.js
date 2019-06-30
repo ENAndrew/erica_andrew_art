@@ -14,3 +14,8 @@ const mix = require('laravel-mix');
 mix.options({ processCssUrls: false })
 	.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
+
+if (mix.inProduction()) {
+	mix.copy('node_modules/font-awesome/fonts', 'public/fonts');
+	mix.version();
+}

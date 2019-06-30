@@ -2,9 +2,13 @@
 
 @section ('content')
 	<div class="user-index-wrapper">
-		<h1>Users</h1>
+		<div class="clearfix">
+			<h1 class="float-left">Users</h1>
 
-		<a href="#">New User</a>
+			<a href="{{ route('admin.users.create') }}" class="float-right">
+				<i class="fas fa-plus"></i> New User
+			</a>
+		</div>
 
 		<table class="table">
 			<thead>
