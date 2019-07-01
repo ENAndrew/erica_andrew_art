@@ -68,12 +68,19 @@ class UserController extends Controller
     {
     	$this->authorize('update', $user);
 
-    	$this->validate($request, [
-    		'first_name' => 'required|max:255|string',
-    		'last_name' => 'required|max:255|string',
-    		'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-    		'password' => 'nullable|min:6|confirmed',
-    	]);
+        $rules = [
+            'first_name' => 'required|max:255|string',
+            'last_name' => 'required|max:255|string',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+        ];
+
+        if ($user->id) {
+            $rules['password'] = 'nullable|min:6|confirmed';
+        } else {
+            $rules['password'] = 'required|min:6|confirmed';
+        }
+
+    	$this->validate($request, $rules);
 
     	$user->first_name = $request->input('first_name');
     	$user->last_name = $request->input('last_name');
