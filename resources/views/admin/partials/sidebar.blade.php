@@ -13,7 +13,7 @@
 		</li>
 
 		<li>
-			<a href="#">Images</a>
+			<a href="{{ route('admin.images.index') }}">Images</a>
 		</li>
 
 		<li>

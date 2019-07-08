@@ -6,7 +6,7 @@
 			<h1>Users</h1>
 
 			<a href="{{ route('admin.users.create') }}">
-				<button class="btn btn-primary">
+				<button class="btn btn-teal">
 					<i class="fa fa-plus"></i> New User
 				</button>
 			</a>
