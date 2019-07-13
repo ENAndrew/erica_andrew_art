@@ -9,6 +9,9 @@
 
     <title>{{ $pageTitle ?? config('app.name', 'Erica Andrew Art') }}</title>
 
+    <meta name="keywords" content="{{ $metaKeywords ?? '' }}">
+    <meta name="description" content="{{ $metaDescription ?? '' }}">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
