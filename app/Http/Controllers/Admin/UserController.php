@@ -11,10 +11,10 @@ class UserController extends Controller
 {
 	/**
 	 * Show the index of users.
-	 * 
+	 *
 	 * @return \Illuminate\Http\Response
 	 */
-    public function index() 
+    public function index()
     {
     	$data['users'] = User::orderBy('last_name')->get();
 
@@ -23,7 +23,7 @@ class UserController extends Controller
 
     /**
      * Show the form for creating a new user.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -33,7 +33,7 @@ class UserController extends Controller
 
     /**
      * Store a newly created user.
-     * 
+     *
      * @param  \Illuminate\Http\Request $request [description]
      * @return \Illuminate\Http\Response
      */
@@ -44,7 +44,7 @@ class UserController extends Controller
 
     /**
      * Show the form for editing the specified user.
-     * 
+     *
      * @param  App\Models\User   $user
      * @return \Illuminate\Http\Response
      */
@@ -59,7 +59,7 @@ class UserController extends Controller
 
     /**
      * Update the user in storage.
-     * 
+     *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Models\User    		$user
      * @return \Illuminate\Http\Response
@@ -68,16 +68,23 @@ class UserController extends Controller
     {
     	$this->authorize('update', $user);
 
-    	$this->validate($request, [
-    		'first_name' => 'required|max:255|string',
-    		'last_name' => 'required|max:255|string',
-    		'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-    		'password' => 'nullable|min:6|confirmed',
-    	]);
+        $rules = [
+            'first_name' => 'required|max:255|string',
+            'last_name' => 'required|max:255|string',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+        ];
+
+        if ($user->id) {
+            $rules['password'] = 'nullable|min:6|confirmed';
+        } else {
+            $rules['password'] = 'required|min:6|confirmed';
+        }
+
+    	$this->validate($request, $rules);
 
     	$user->first_name = $request->input('first_name');
     	$user->last_name = $request->input('last_name');
-    	$user->email = $request->inpu('email');
+    	$user->email = $request->input('email');
 
     	if ($request->filled('password')) $user->password = bcrypt($request->input('password'));
 
@@ -92,7 +99,7 @@ class UserController extends Controller
 
     /**
      * Destroy the specified user.
-     * 
+     *
      * @param  \App\Models\User   $user
      * @return \Illuminate\Http\Response
      */
@@ -101,9 +108,9 @@ class UserController extends Controller
     	$this->authorize('destroy', $user);
 
     	if ($user->delete()) {
-    		return route(redirect('admin.users.index'))->with('success', 'User was deleted.');
+    		return redirect(route('admin.users.index'))->with('success', 'User was deleted.');
     	} else {
-    		return route(redirect('admin.users.index'))->with('danger', 'Something went wrong.');
+    		return redirect(route('admin.users.index'))->with('danger', 'Something went wrong.');
     	}
     }
 }
