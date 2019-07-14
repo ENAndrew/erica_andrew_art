@@ -1,0 +1,17 @@
+.header-wrapper {
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 25%);
+
+	.desk-nav {
+		@media #{$mobile} {
+			display: none;
+		}
+	}
+
+	.mobile-nav {
+		display: none;
+
+		@media #{$mobile} {
+			display: block;
+		}
+	}
+}

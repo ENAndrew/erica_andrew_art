@@ -19,6 +19,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
+Vue.component('mobile-dropdown', require('./components/MobileDropdown.vue').default);
 Vue.component('sticky-element', require('./components/StickyElement.vue').default);
 
 /**
