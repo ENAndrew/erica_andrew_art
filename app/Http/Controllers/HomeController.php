@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactEmail;
+
+use App\Rules\Captcha;
+
 class HomeController extends Controller
 {
     /**
@@ -74,5 +79,36 @@ class HomeController extends Controller
         $data['metaDescription'] = 'Contact me for art or design commissions.';
 
         return view('contact', $data);
+    }
+
+    /**
+     * Process the contact form.
+     *
+     * @param  \Iluminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function processContact(Request $request)
+    {
+        $mailTo = 'erica.nicole.andrew@gmail.com';
+
+        $data = new \stdClass();
+
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'message' => 'required|string',
+        ];
+
+        $rules['g-recaptcha-response'] = new Captcha();
+
+        $this->validate($request, $rules);
+
+        $data->name = $request->input('name');
+        $data->email = $request->input('email');
+        $data->message = $request->input('message');
+
+        Mail::to($mailTo)->send(new ContactEmail($data));
+
+        return view('thanks');
     }
 }

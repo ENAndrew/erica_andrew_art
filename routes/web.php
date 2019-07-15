@@ -20,7 +20,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/digital', 'HomeController@digital')->name('digital');
 Route::get('/traditional', 'HomeController@traditional')->name('traditional');
 Route::get('/design', 'HomeController@design')->name('design');
+
 Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::post('/contact', 'HomeController@processContact')->name('process.contact');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
 	Route::get('/', 'HomeController@dashboard')->name('dashboard');
