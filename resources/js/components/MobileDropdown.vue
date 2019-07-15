@@ -1,18 +1,34 @@
 <template>
 	<div class="mobile-dropdown-component">
+		<div class="title pull-left">
+			<h3>Erica Andrew Art</h3>
+		</div>
+
 		<div class="icon">
 			<i v-on:click="openDrop = !openDrop" class="fa fa-bars"></i>
 		</div>
 
 		<div v-if="openDrop" class="mobile-links">
 			<ul>
-				<li>
-					<a href="/home">Home</a>
-				</li>
+				<a href="/">
+					<li>Home</li>
+				</a>
 
-				<li>
-					<a href="/digital">Digital Artwork</a>
-				</li>
+				<a href="/digital">
+					<li>Digital Artwork</li>
+				</a>
+
+				<a href="/traditional">
+					<li>Traditional Artwork</li>
+				</a>
+
+				<a href="/design">
+					<li>Development/Design</li>
+				</a>
+
+				<a href="/contact">
+					<li>Contact</li>
+				</a>
 			</ul>
 		</div>
 	</div>

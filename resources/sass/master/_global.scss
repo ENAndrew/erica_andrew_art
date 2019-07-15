@@ -48,14 +48,16 @@ p {
 
 a {
     text-decoration: none;
-    color: $primaryBlue;
+    color: $textColor;
 
     &:hover {
         text-decoration: none;
+        color: $teal;
     }
 
     &:focus {
         text-decoration: none;
+        color: $teal;
     }
 }
 
