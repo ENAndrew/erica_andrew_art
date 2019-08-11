@@ -19,6 +19,8 @@ class CreateImagesTable extends Migration
             $table->integer('sort_order')->unsigned()->default(0);
             $table->string('path');
             $table->string('url')->nullable();
+            $table->string('thumbnail_path');
+            $table->string('thumbnail_url')->nullable();
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->datetime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
