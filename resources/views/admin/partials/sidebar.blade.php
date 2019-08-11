@@ -17,6 +17,10 @@
 		</li>
 
 		<li>
+			<a href="{{ route('admin.categories.index') }}">Image Categories</a>
+		</li>
+
+		<li>
 			<a href="{{ route('admin.users.index') }}">Users</a>
 		</li>
 	</ul>
