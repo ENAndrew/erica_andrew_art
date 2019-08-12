@@ -8,7 +8,7 @@
 			<h1>Create New User</h1>
 		@endif
 
-		<form class="basic-form" role="form" action="/admin/users{{ $user->id ? '/'.$user->id : '' }}" method="POST" autocomplete="force-no">
+		<form class="basic-form" role="form" action="/admin/users{{ $user->id ? '/' . $user->id : '' }}" method="POST" autocomplete="force-no">
 			@csrf
 
 			@if ($user->id)

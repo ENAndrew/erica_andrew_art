@@ -1,13 +1,13 @@
 @extends ('layouts.admin')
 
 @section ('content')
-	<div class="user-index-wrapper">
+	<div class="category-index-wrapper">
 		<div class="d-flex vertical-align justify-content-between">
 			<h1>Users</h1>
 
-			<a href="{{ route('admin.users.create') }}">
+			<a href="{{ route('admin.categories.create') }}">
 				<button class="btn btn-teal">
-					<i class="fa fa-plus"></i> New User
+					<i class="fa fa-plus"></i> New Category
 				</button>
 			</a>
 		</div>
@@ -18,7 +18,7 @@
 			<thead>
 				<th>Name</th>
 
-				<th>Email</th>
+				<th>Image Count</th>
 
 				<th>Actions</th>
 
@@ -26,22 +26,22 @@
 			</thead>
 
 			<tbody>
-				@foreach ($users as $user)
+				@foreach ($categories as $category)
 					<tr>
 						<td>
-							<a href="{{ route('admin.users.edit', $user) }}">{{ $user->first_name }} {{ $user->last_name }}</a>
+							<a href="{{ route('admin.categories.edit', $category) }}">{{ $category->name }}</a>
 						</td>
 
-						<td>{{ $user->email }}</td>
+						<td>{{ $category->images()->count() }}</td>
 
 						<td>
-							<a href="{{ route('admin.users.edit', $user) }}">
+							<a href="{{ route('admin.categories.edit', $category) }}">
 								<i title="Edit" class="fa fa-edit"></i>
 							</a>
 						</td>
 
 						<td>
-							<form action="{{ route('admin.users.destroy', $user) }}" method="POST" onsubmit="if(!confirm('Are you sure? This is permanent.')) return false">
+							<form action="{{ route('admin.categories.destroy', $category) }}" method="POST" onsubmit="if(!confirm('Are you sure? This is permanent.')) return false">
 								@csrf @method('DELETE')
 
 								<button type="submit" style="background-color: white; color: red;">
