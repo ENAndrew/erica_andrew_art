@@ -15,16 +15,17 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('category_id')->unsigned();
+            $table->bigInteger('type_id')->unsigned();
             $table->integer('sort_order')->unsigned()->default(0);
             $table->string('path');
             $table->string('url')->nullable();
+            $table->text('description')->nullable();
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->datetime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
 
         Schema::table('images', function (Blueprint $table) {
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('type_id')->references('id')->on('image_types');
         });
     }
 
@@ -34,9 +35,9 @@ class CreateImagesTable extends Migration
      * @return void
      */
     public function down()
-    {   
+    {
         Schema::table('images', function (Blueprint $table) {
-            $table->dropForeign('images_category_id_foreign');
+            $table->dropForeign('images_type_id_foreign');
         });
 
         Schema::dropIfExists('images');

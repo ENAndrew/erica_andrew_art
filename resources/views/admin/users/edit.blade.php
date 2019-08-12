@@ -21,13 +21,13 @@
 				<div class="col">
 					<label for="first_name">First Name</label>
 
-					<input class="form-control" type="text" name="first_name" value="{{ $user->first_name ?? old('name') }}">
+					<input class="form-control" type="text" name="first_name" value="{{ $user->first_name ?? old('first_name') }}">
 				</div>
 
 				<div class="col">
 					<label for="last_name">Last Name</label>
 
-					<input class="form-control" type="text" name="last_name" value="{{ $user->last_name ?? old('name') }}">
+					<input class="form-control" type="text" name="last_name" value="{{ $user->last_name ?? old('last_name') }}">
 				</div>
 			</div>
 
