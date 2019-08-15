@@ -17,7 +17,7 @@
 		</li>
 
 		<li>
-			<a href="{{ route('admin.categories.index') }}">Image Categories</a>
+			<a href="{{ route('admin.imagetypes.index') }}">Image Types</a>
 		</li>
 
 		<li>

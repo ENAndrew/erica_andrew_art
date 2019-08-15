@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CategoriesTableSeeder extends Seeder
+class ImageTypesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,13 +13,14 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::statement("
         	INSERT INTO
-        		`categories` (`id`, `name`, `slug`)
+        		`image_types` (`id`, `name`, `slug`)
         	VALUES
         		(1, 'Traditional', 'traditional'),
         		(2, 'Digital', 'digital')
         	ON DUPLICATE KEY UPDATE
         		`name` = VALUES(`name`),
-        		`slug` = VALUES(`slug`)
+        		`slug` = VALUES(`slug`),
+        		`created_at` = CURRENT_TIMESTAMP;
         ");
     }
 }

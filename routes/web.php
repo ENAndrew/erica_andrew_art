@@ -27,7 +27,7 @@ Route::post('/contact', 'HomeController@processContact')->name('process.contact'
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
 	Route::get('/', 'HomeController@dashboard')->name('dashboard');
 
-	Route::resource('categories', 'CategoryController');
 	Route::resource('images', 'ImageController');
+	Route::resource('imagetypes', 'ImageTypeController');
 	Route::resource('users', 'UserController');
 });

@@ -1,13 +1,13 @@
 @extends ('layouts.admin')
 
 @section ('content')
-	<div class="category-index-wrapper">
+	<div class="image-types-index-wrapper">
 		<div class="d-flex vertical-align justify-content-between">
 			<h1>Users</h1>
 
-			<a href="{{ route('admin.categories.create') }}">
+			<a href="{{ route('admin.imagetypes.create') }}">
 				<button class="btn btn-teal">
-					<i class="fa fa-plus"></i> New Category
+					<i class="fa fa-plus"></i> New Image Type
 				</button>
 			</a>
 		</div>
@@ -26,22 +26,22 @@
 			</thead>
 
 			<tbody>
-				@foreach ($categories as $category)
+				@foreach ($types as $type)
 					<tr>
 						<td>
-							<a href="{{ route('admin.categories.edit', $category) }}">{{ $category->name }}</a>
+							<a href="{{ route('admin.imagetypes.edit', $type) }}">{{ $type->name }}</a>
 						</td>
 
-						<td>{{ $category->images()->count() }}</td>
+						<td>{{ $type->images()->count() }}</td>
 
 						<td>
-							<a href="{{ route('admin.categories.edit', $category) }}">
+							<a href="{{ route('admin.imagetypes.edit', $type) }}">
 								<i title="Edit" class="fa fa-edit"></i>
 							</a>
 						</td>
 
 						<td>
-							<form action="{{ route('admin.categories.destroy', $category) }}" method="POST" onsubmit="if(!confirm('Are you sure? This is permanent.')) return false">
+							<form action="{{ route('admin.imagetypes.destroy', $type) }}" method="POST" onsubmit="if(!confirm('Are you sure? This is permanent.')) return false">
 								@csrf @method('DELETE')
 
 								<button type="submit" style="background-color: white; color: red;">
