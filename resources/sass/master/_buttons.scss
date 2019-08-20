@@ -5,5 +5,10 @@ button {
 
 .btn-teal {
 	color: white;
-	background-color: teal;
+	background-color: $teal;
+
+	&:hover {
+		background-color: darken($teal, 20%);
+		color: white;
+	}
 }

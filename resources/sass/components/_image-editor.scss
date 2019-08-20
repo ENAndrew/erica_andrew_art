@@ -1,0 +1,27 @@
+.image-editor-component {
+	position: relative;
+
+	input[type="file"] {
+		position: fixed;
+		top: -100%;
+		left: -100%;
+	}
+
+	.type-links {
+		display: flex;
+		justify-content: flex-start;
+
+		.type-link {
+			padding: 1em;
+			border: 1px solid $borderColor;
+			border-radius: 10% 10% 0 0; 
+			cursor: pointer;
+
+			&.active {
+				border: none;
+				background-color: $teal;
+				color: white;
+			}
+		}
+	}
+}

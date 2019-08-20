@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Image;
-use App\Models\Category;
+use App\Models\ImageType;
 
 class ImageController extends Controller
 {
@@ -17,8 +17,8 @@ class ImageController extends Controller
 	 */
     public function index()
     {
-    	$data['images'] = Image::with('category')->orderBy('sort_order')->get();
-    	$data['categories'] = Category::all();
+    	$data['images'] = Image::with('type')->orderBy('sort_order')->get();
+    	$data['types'] = ImageType::all();
 
     	return view('admin.images.index', $data);
     }
