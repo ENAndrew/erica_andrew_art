@@ -31,7 +31,7 @@
 </template>
 
 <script>
-	import draggable from 'vue-draggable'
+	import draggable from 'vuedraggable'
 
 	export default {
 		components: {

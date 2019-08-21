@@ -28,6 +28,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin
 	Route::get('/', 'HomeController@dashboard')->name('dashboard');
 
 	Route::resource('images', 'ImageController');
-	Route::resource('imagetypes', 'ImageTypeController');
+	Route::resource('image-types', 'ImageTypeController');
 	Route::resource('users', 'UserController');
 });

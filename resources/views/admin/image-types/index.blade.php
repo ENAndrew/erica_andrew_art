@@ -5,7 +5,7 @@
 		<div class="d-flex vertical-align justify-content-between">
 			<h1>Users</h1>
 
-			<a href="{{ route('admin.imagetypes.create') }}">
+			<a href="{{ route('admin.image-types.create') }}">
 				<button class="btn btn-teal">
 					<i class="fa fa-plus"></i> New Image Type
 				</button>
@@ -29,19 +29,19 @@
 				@foreach ($types as $type)
 					<tr>
 						<td>
-							<a href="{{ route('admin.imagetypes.edit', $type) }}">{{ $type->name }}</a>
+							<a href="{{ route('admin.image-types.edit', $type) }}">{{ $type->name }}</a>
 						</td>
 
 						<td>{{ $type->images()->count() }}</td>
 
 						<td>
-							<a href="{{ route('admin.imagetypes.edit', $type) }}">
+							<a href="{{ route('admin.image-types.edit', $type) }}">
 								<i title="Edit" class="fa fa-edit"></i>
 							</a>
 						</td>
 
 						<td>
-							<form action="{{ route('admin.imagetypes.destroy', $type) }}" method="POST" onsubmit="if(!confirm('Are you sure? This is permanent.')) return false">
+							<form action="{{ route('admin.image-types.destroy', $type) }}" method="POST" onsubmit="if(!confirm('Are you sure? This is permanent.')) return false">
 								@csrf @method('DELETE')
 
 								<button type="submit" style="background-color: white; color: red;">

@@ -18,7 +18,7 @@ class ImageTypeController extends Controller
     {
     	$data['types'] = ImageType::orderBy('name')->get();
 
-    	return view('admin.imagetypes.index', $data);
+    	return view('admin.image-types.index', $data);
     }
 
     /**
@@ -54,7 +54,7 @@ class ImageTypeController extends Controller
 
     	$data['type'] = $imageType;
 
-    	return view('admin.imagetypes.edit', $data);
+    	return view('admin.image-types.edit', $data);
     }
 
     /**
@@ -77,9 +77,9 @@ class ImageTypeController extends Controller
     	$imageType->slug = $request->input('slug');
 
     	if ($imageType->save()) {
-    		return redirect(route('admin.imagetypes.edit', $imageType))->with('success', 'Image type has been saved.');
+    		return redirect(route('admin.image-types.edit', $imageType))->with('success', 'Image type has been saved.');
     	} else {
-    		return redirect(route('admin.imagetypes.edit', $imageType))->with('danger', 'Something went wrong, please try again.');
+    		return redirect(route('admin.image-types.edit', $imageType))->with('danger', 'Something went wrong, please try again.');
     	}
     }
 
@@ -94,13 +94,13 @@ class ImageTypeController extends Controller
     	$this->authorize('destroy', $imageType);
 
     	if ($imageType->images()->count()) {
-    		return redirect(route('admin.imagetypes.index'))->with('danger', $imageType->images()->count() . ' image(s) are attached to this type, change the image types first.');
+    		return redirect(route('admin.image-types.index'))->with('danger', $imageType->images()->count() . ' image(s) are attached to this type, change the image types first.');
     	}
 
     	if ($imageType->delete()) {
-    		return redirect(route('admin.imagetypes.index'))->with('success', 'Image type was deleted.');
+    		return redirect(route('admin.image-types.index'))->with('success', 'Image type was deleted.');
     	} else {
-    		return redirect(route('admin.imagetypes.index'))->with('danger', 'Something went wrong, please try again.');
+    		return redirect(route('admin.image-types.index'))->with('danger', 'Something went wrong, please try again.');
     	}
     }
 }

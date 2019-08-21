@@ -23,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Route::model('image-type', \App\Models\ImageType::class);
 
         parent::boot();
     }

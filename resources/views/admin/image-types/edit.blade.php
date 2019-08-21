@@ -8,7 +8,7 @@
 			<h1>Create New Image Type</h1>
 		@endif
 
-		<form class="basic-form" role="form" action="/admin/imagetypes{{ $type->id ? '/' . $type->id : '' }}" method="POST" autocomplete="force-no">
+		<form class="basic-form" role="form" action="/admin/image-types{{ $type->id ? '/' . $type->id : '' }}" method="POST" autocomplete="force-no">
 			@csrf
 
 			@if ($type->id)
