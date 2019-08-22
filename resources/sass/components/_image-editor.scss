@@ -14,13 +14,33 @@
 		.type-link {
 			padding: 1em;
 			border: 1px solid $borderColor;
-			border-radius: 10% 10% 0 0; 
+			border-radius: 10% 10% 0 0;
 			cursor: pointer;
 
 			&.active {
 				border: none;
 				background-color: $teal;
 				color: white;
+			}
+		}
+	}
+
+	.image-set {
+		.image {
+			position: relative;
+			width: 120px;
+			height: 120px;
+			background-size: cover;
+			background-position: center;
+			margin: 1rem;
+			float: left;
+
+			.fa-times {
+				cursor: pointer;
+				position: absolute;
+				color: white;
+				bottom: 1rem;
+				right: 1rem;
 			}
 		}
 	}

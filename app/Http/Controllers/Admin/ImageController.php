@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -54,8 +55,31 @@ class ImageController extends Controller
 
             $thumbnailHeight = ceil($origHeight * ($thumbnailWidth / $origWidth));
 
-            // This works to here
+            $image->resize($maxWidth, $maxHeight, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+
+            $hash = $file->hashName();
+            $temporaryPath = "/tmp/{$hash}.png";
+            $image->save($temporaryPath);
+            $original = new File($temporaryPath);
+
+            $thumbnail = Image::make($temporaryPath)->crop($thumbnailWidth, $thumbnailHeight);
+            $temporaryThumbnailPath = "/tmp/{$hash}-thumbnail.png";
+            $thumbnail->save($temporaryThumbnailPath);
+            $thumb = new File($temporaryThumbnailPath);
+
+            $newImage = new ImageModel();
+            $newImage->type_id = ImageType::where('name', $request->input('type'))->value('id');
+            $newImage->path = Storage::disk('s3')->putFile('images/originals', $original);
+            $newImage->url = Storage::disk('s3')->url($newImage->path);
+            $newImage->thumbnail_path = Storage::disk('s3')->putFile('images/thumbnails', $thumb);
+            $newImage->thumbnail_url = Storage::disk('s3')->url($newImage->thumbnail_path);
+            $newImage->save();
         }
+
+        return redirect(route('admin.images.index'))->with('success', 'Images have been saved.');
 
     }
 }
