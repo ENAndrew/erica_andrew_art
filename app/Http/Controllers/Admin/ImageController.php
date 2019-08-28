@@ -80,6 +80,72 @@ class ImageController extends Controller
         }
 
         return redirect(route('admin.images.index'))->with('success', 'Images have been saved.');
+    }
 
+    /**
+     * Update the description of the image in storage.
+     *
+     * @param  \Illuminate\Http\Request    $request
+     * @param  \App\Models\Image $imageModel
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, ImageModel $imageModel)
+    {
+        $this->authorize('update', $imageModel);
+
+        $this->validate($request, [
+            'description' => 'required|string',
+        ]);
+
+        $imageModel->description = $request->input('description');
+
+        if ($imageModel->save()) {
+            return redirect(route('admin.images.index'))->with('success', 'Image description has been updated.');
+        } else {
+            return redirect(route('admin.images.index'))->with('danger', 'Something went wrong, please try again.');
+        }
+    }
+
+    /**
+     * Destroy the given image.
+     *
+     * @param  \App\Models\Image $imageModel
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        $imageModel = ImageModel::where('id', $request->input('id'))->first();
+
+        $this->authorize('destroy', $imageModel);
+
+        $deleted = $imageModel->delete();
+
+        return response()->json([
+            'status' => $deleted ? 200 : 500,
+            'message' => $deleted ? 'Image has been deleted.' : 'Image was not deleted.',
+        ]);
+    }
+
+    /**
+     * Update the order of images in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateOrder(Request $request)
+    {
+        $this->validate($request, [
+            'images' => 'required|array',
+            'images.*' => 'required|integer|exists:images,id',
+        ]);
+
+        foreach ($request->input('images') as $index => $id) {
+            ImageModel::where('images.id', $id)->update([ 'sort_order' => $index ]);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Image order updated.',
+        ]);
     }
 }

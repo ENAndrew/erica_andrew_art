@@ -24,9 +24,27 @@
 
 		<draggable v-model="imageSet" class="image-set">
 			<div class="image" v-for="image in imageSet" :style="`background-image: url('${image.thumbnail_url}');`">
+				<i title="Edit Description" class="fa fa-lg fa-edit" v-on:click="openEdit(image)"></i>
+
 				<i title="Delete" class="fa fa-lg fa-times" v-on:click="remove(image)"></i>
 			</div>
 		</draggable>
+
+		<div class="waiting" v-if="waiting">
+			<i class="fa fa-lg fa-spin fa-cog"></i>
+		</div>
+
+		<div class="description-modal" v-if="selectedImage.id">
+			<i class="fa fa-lg fa-times" v-on:click="closeEdit"></i>
+
+			<h4>Enter a description:</h4>
+
+			<input class="form-control" type="text" v-model="imageDescription">
+
+			<button class="btn btn-teal" v-on:click="updateImage">Update</button>
+		</div>
+
+		<div class="shade" v-if="selectedImage.id" v-on:click="closeEdit"></div>
 	</div>
 </template>
 
@@ -55,8 +73,9 @@
 				imageSet: [],
 				mutableImages: [],
 				currentType: {},
-				awaitingImages: true,
-				waiting: false
+				waiting: false,
+				selectedImage: {},
+				imageDescription: ''
 			}
 		},
 
@@ -106,11 +125,12 @@
 				if (window.confirm('Do you want to permanently delete this image?')) {
 					this.waiting = true;
 
-					axios.delete(`/admin/images/${image.id}`)
+
+					axios.delete(`/admin/images/${image.id}`, { data: image })
 						.then(response => {
 							let index = this.mutableImages.indexOf(image);
 
-							if (index >= 0) this.mutablePhotos.splice(index, 1);
+							if (index >= 0) this.mutableImages.splice(index, 1);
 
 							this.waiting = false;
 
@@ -122,6 +142,20 @@
 				}
 
 				return false;
+			},
+
+			openEdit(image) {
+				this.selectedImage = image;
+				this.imageDescription = image.description;
+			},
+
+			closeEdit() {
+				this.selectedImage = {};
+				this.imageDescription = '';
+			},
+
+			updateImage() {
+				//
 			}
 		}
 	}
