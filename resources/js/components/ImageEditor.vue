@@ -30,14 +30,20 @@
 			</div>
 		</draggable>
 
+		<button v-show="imageSet.length > 1" class="btn btn-teal save-order" v-on:click="saveOrder">
+			<i class="fa fa-list-ul"></i> Save Image Order
+		</button>
+
 		<div class="waiting" v-if="waiting">
 			<i class="fa fa-lg fa-spin fa-cog"></i>
 		</div>
 
-		<div class="description-modal" v-if="selectedImage.id">
+		<div class="description-modal" v-if="selectedImage.id" :style="{ 'top': this.modalTop }">
 			<i class="fa fa-lg fa-times" v-on:click="closeEdit"></i>
 
 			<h4>Enter a description:</h4>
+
+			<p v-if="error.length" style="color: red;">{{ error }}</p>
 
 			<input class="form-control" type="text" v-model="imageDescription">
 
@@ -75,7 +81,9 @@
 				currentType: {},
 				waiting: false,
 				selectedImage: {},
-				imageDescription: ''
+				imageDescription: '',
+				modalTop: '',
+				error: ''
 			}
 		},
 
@@ -121,10 +129,49 @@
 				jQuery(this.$el).find('#image-file-input').trigger('click');
 			},
 
+			updateImage() {
+				this.waiting = true;
+
+				if (!this.imageDescription) {
+					this.error = 'Oops, please enter a description.';
+
+					return false;
+				}
+
+				let params = {
+					description: this.imageDescription,
+					id: this.selectedImage.id
+				};
+
+				axios.patch(`/admin/images/${this.selectedImage.id}`, params)
+					.then(response => {
+						if (response.data.status === 200) {
+							let index = this.mutableImages.indexOf(this.selectedImage);
+
+							if (index >= 0) this.mutableImages[index].description = response.data.description;
+						} else {
+							this.error = response.data.message;
+
+							return false;
+						}
+					})
+					.catch(error => {
+						if (console && console.error) console.error(error);
+					})
+					.then(response => {
+						this.waiting = false;
+						this.selectedImage = {};
+						this.imageDescription = '';
+
+						if (this.error.length) this.error = '';
+					});
+
+				return false;
+			},
+
 			remove(image) {
 				if (window.confirm('Do you want to permanently delete this image?')) {
 					this.waiting = true;
-
 
 					axios.delete(`/admin/images/${image.id}`, { data: image })
 						.then(response => {
@@ -144,18 +191,39 @@
 				return false;
 			},
 
+			saveOrder() {
+				this.waiting = true;
+
+				let image, images = [];
+
+				for (let i = 0; i < this.imageSet.length; ++i) {
+					image = this.imageSet[i];
+
+					images.push(image.id);
+				}
+
+				axios.post(`/admin/images/order`, { images })
+					.then(response => {
+						this.waiting = false;
+					})
+					.catch(error => {
+						if (console && console.error) console.error(error);
+					});
+			},
+
 			openEdit(image) {
 				this.selectedImage = image;
 				this.imageDescription = image.description;
+
+				let offset = 160;
+				this.modalTop = jQuery(document).scrollTop() + offset + 'px';
 			},
 
 			closeEdit() {
 				this.selectedImage = {};
 				this.imageDescription = '';
-			},
-
-			updateImage() {
-				//
+				this.error = '';
+				this.waiting = false;
 			}
 		}
 	}

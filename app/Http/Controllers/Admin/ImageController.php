@@ -86,11 +86,12 @@ class ImageController extends Controller
      * Update the description of the image in storage.
      *
      * @param  \Illuminate\Http\Request    $request
-     * @param  \App\Models\Image $imageModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ImageModel $imageModel)
+    public function update(Request $request)
     {
+        $imageModel = ImageModel::where('id', $request->input('id'))->first();
+
         $this->authorize('update', $imageModel);
 
         $this->validate($request, [
@@ -99,17 +100,18 @@ class ImageController extends Controller
 
         $imageModel->description = $request->input('description');
 
-        if ($imageModel->save()) {
-            return redirect(route('admin.images.index'))->with('success', 'Image description has been updated.');
-        } else {
-            return redirect(route('admin.images.index'))->with('danger', 'Something went wrong, please try again.');
-        }
+        $saved = $imageModel->save();
+
+        return response()->json([
+            'status' => $saved ? 200 : 500,
+            'message' => $saved ? 'Description has been saved.' : 'Description was not saved.',
+            'description' => $saved ? $imageModel->description : ''
+        ]);
     }
 
     /**
      * Destroy the given image.
      *
-     * @param  \App\Models\Image $imageModel
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)

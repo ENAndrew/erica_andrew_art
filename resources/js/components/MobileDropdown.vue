@@ -27,7 +27,7 @@
 				</a>
 
 				<a href="/contact">
-					<li>Contact</li>
+					<li class="no-border">Contact</li>
 				</a>
 			</ul>
 		</div>

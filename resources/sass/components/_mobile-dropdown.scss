@@ -17,6 +17,10 @@
 			li {
 				border-bottom: 1px solid $teal;
 				padding: 20px;
+
+				&.no-border {
+					border-bottom: none !important;
+				}
 			}
 		}
 	}

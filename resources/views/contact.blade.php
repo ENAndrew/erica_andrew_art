@@ -8,7 +8,7 @@
 
 				@include ('partials.alerts')
 
-				<form class="basic-form contact-form" method="POST" action="">
+				<form class="basic-form contact-form" method="POST" action="/contact">
 					@csrf
 
 					<div class="form-group">

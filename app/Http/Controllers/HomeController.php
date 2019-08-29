@@ -9,6 +9,8 @@ use App\Mail\ContactEmail;
 
 use App\Rules\Captcha;
 
+use App\Models\Image;
+
 class HomeController extends Controller
 {
     /**
@@ -36,6 +38,11 @@ class HomeController extends Controller
         $data['metaKeywords'] = 'art traditional drawing painting watercolor tattoo design';
         $data['metaDescription'] = 'Erica Andrew\'s Traditional Media Artwork';
 
+        $data['images'] = Image::whereHas('type', function ($query) {
+            $query->where('slug', 'traditional');
+        })->orderBy('sort_order')
+        ->get();
+
         return view('traditional', $data);
     }
 
@@ -49,6 +56,11 @@ class HomeController extends Controller
         $data['pageTitle'] = 'Digital | Erica Andrew Art';
         $data['metaKeywords'] = 'art artist digital painting tattoo design';
         $data['metaDescription'] = 'Erica Andrew\'s Digital Media Artwork';
+
+        $data['images'] = Image::whereHas('type', function ($query) {
+            $query->where('slug', 'digital');
+        })->orderBy('sort_order')
+        ->get();
 
         return view('digital', $data);
     }
