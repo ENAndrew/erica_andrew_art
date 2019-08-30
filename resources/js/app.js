@@ -20,7 +20,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('image-editor', require('./components/ImageEditor.vue').default);
+Vue.component('image-gallery', require('./components/ImageGallery.vue').default);
 Vue.component('mobile-dropdown', require('./components/MobileDropdown.vue').default);
+Vue.component('parallax', require('./components/Parallax.vue').default);
 Vue.component('slug', require('./components/Slug.vue').default);
 Vue.component('sticky-element', require('./components/StickyElement.vue').default);
 
