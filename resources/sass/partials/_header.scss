@@ -1,17 +1,22 @@
-.header-wrapper {
-	box-shadow: 3px 3px 3px rgba(0, 0, 0, 25%);
+nav {
+	background-color: white;
 
-	.desk-nav {
-		@media #{$mobile} {
-			display: none;
-		}
+	.fa-bars {
+		color: $textColor;
 	}
 
-	.mobile-nav {
-		display: none;
+	.navbar-nav a {
+		&.active {
+			color: $teal;
+			font-size: 1.25em;
 
-		@media #{$mobile} {
-			display: block;
+			&:before {
+				content: '-';
+			}
+
+			&:after {
+				content: '-';
+			}
 		}
 	}
 }

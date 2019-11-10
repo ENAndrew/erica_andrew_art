@@ -6,33 +6,41 @@
 			<div class="container">
 				<h1 class="text-center text-caps">Contact Me</h1>
 
-				@include ('partials.alerts')
-
-				<form class="basic-form contact-form" method="POST" action="/contact">
-					@csrf
-
-					<div class="form-group">
-						<label for="name">Your Name:</label>
-
-						<input type="text" class="form-control" name="name" value="{{ old('name') }}">
+				<div class="row">
+					<div class="col-md-4 d-flex align-items-center">
+						<img class="img-fluid" src="/img/layout/Scarab_Sketch.jpg" alt="digital painting of a scarab beetle">
 					</div>
 
-					<div class="form-group">
-						<label for="email">Email:</label>
+					<div class="col-md-8">
+						@include ('partials.alerts')
 
-						<input type="email" class="form-control" name="email" value="{{ old('email') }}">
+						<form class="basic-form contact-form" method="POST" action="/contact">
+							@csrf
+
+							<div class="form-group">
+								<label for="name">Your Name:</label>
+
+								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
+							</div>
+
+							<div class="form-group">
+								<label for="email">Email:</label>
+
+								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
+							</div>
+
+							<div class="form-group">
+								<label for="message">Message:</label>
+
+								<textarea class="form-control" rows="6" name="message">{{ old('message') }}</textarea>
+							</div>
+
+							<div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+
+							<button type="submit" class="btn btn-teal">Submit</button>
+						</form>
 					</div>
-
-					<div class="form-group">
-						<label for="message">Message:</label>
-
-						<textarea class="form-control" rows="6" name="message">{{ old('message') }}</textarea>
-					</div>
-
-					<div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
-
-					<button type="submit" class="btn btn-teal">Submit</button>
-				</form>
+				</div>
 			</div>
 		</section>
 	</div>
