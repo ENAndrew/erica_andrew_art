@@ -35,7 +35,7 @@
 								<textarea class="form-control" rows="6" name="message">{{ old('message') }}</textarea>
 							</div>
 
-							<div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+							<recaptcha api-key="{{ config('recaptcha.key') }}"></recaptcha>
 
 							<button type="submit" class="btn btn-teal">Submit</button>
 						</form>
