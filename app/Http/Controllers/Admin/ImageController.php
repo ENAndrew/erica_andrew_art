@@ -65,7 +65,7 @@ class ImageController extends Controller
             $image->save($temporaryPath);
             $original = new File($temporaryPath);
 
-            $thumbnail = Image::make($temporaryPath)->crop($thumbnailWidth, $thumbnailHeight);
+            $thumbnail = Image::make($temporaryPath)->resize($thumbnailWidth, $thumbnailHeight);
             $temporaryThumbnailPath = "/tmp/{$hash}-thumbnail.png";
             $thumbnail->save($temporaryThumbnailPath);
             $thumb = new File($temporaryThumbnailPath);

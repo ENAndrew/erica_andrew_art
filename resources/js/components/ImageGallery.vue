@@ -38,7 +38,7 @@
 			openModal(image) {
 				this.selectedImage = image;
 
-				let offset = 60;
+				let offset = 80;
 				this.modalTop = jQuery(document).scrollTop() + offset + 'px';
 			},
 

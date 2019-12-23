@@ -7,11 +7,13 @@
 				<h1 class="text-center text-caps">Contact Me</h1>
 
 				<div class="row">
-					<div class="col-md-4 d-flex align-items-center">
+					<div class="col-md-4 d-flex justify-content-center align-items-center">
 						<img class="img-fluid" src="/img/layout/Scarab_Sketch.jpg" alt="digital painting of a scarab beetle">
 					</div>
 
 					<div class="col-md-8">
+						<p>I want to hear from you... drop me a line</p>
+
 						@include ('partials.alerts')
 
 						<form class="basic-form contact-form" method="POST" action="/contact">

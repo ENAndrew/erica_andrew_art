@@ -24,6 +24,8 @@ Route::get('/design', 'HomeController@design')->name('design');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::post('/contact', 'HomeController@processContact')->name('process.contact');
 
+Route::get('/thanks', 'HomeController@thanks')->name('thanks');
+
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
 	Route::get('/', 'HomeController@dashboard')->name('dashboard');
 

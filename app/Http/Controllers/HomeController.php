@@ -94,6 +94,20 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the thank you page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function thanks()
+    {
+        $data['pageTitle'] = 'Thank You | Erica Andrew Art';
+        $data['metaKeywords'] = 'thank you for submission';
+        $data['metaDescription'] = '';
+
+        return view('thanks', $data);
+    }
+
+    /**
      * Process the contact form.
      *
      * @param  \Iluminate\Http\Request $request
@@ -121,6 +135,6 @@ class HomeController extends Controller
 
         Mail::to($mailTo)->send(new ContactEmail($data));
 
-        return view('thanks');
+        return redirect(route('thanks'));
     }
 }
