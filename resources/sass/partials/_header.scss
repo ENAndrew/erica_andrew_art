@@ -6,6 +6,8 @@ nav {
 	}
 
 	.navbar-nav a {
+		font-family: $primaryFont;
+
 		&.active {
 			color: $teal;
 			font-size: 1.25em;

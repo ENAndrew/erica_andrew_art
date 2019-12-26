@@ -37,9 +37,9 @@
 								<textarea class="form-control" rows="6" name="message">{{ old('message') }}</textarea>
 							</div>
 
-							<recaptcha api-key="{{ config('recaptcha.key') }}"></recaptcha>
+							<div class="g-recaptcha" data-sitekey="{{ config('recaptcha.key') }}"></div>
 
-							<button type="submit" class="btn btn-teal">Submit</button>
+							<input type="button" class="btn btn-teal mt-3" value="Submit" onclick="this.disabled=true;this.value='Submitting, please wait...';this.form.submit();"></input>
 						</form>
 					</div>
 				</div>

@@ -22,7 +22,6 @@ window.Vue = require('vue');
 Vue.component('image-editor', require('./components/ImageEditor.vue').default);
 Vue.component('image-gallery', require('./components/ImageGallery.vue').default);
 Vue.component('parallax', require('./components/Parallax.vue').default);
-Vue.component('recaptcha', require('./components/ReCaptcha.vue').default);
 Vue.component('slug', require('./components/Slug.vue').default);
 Vue.component('sticky-element', require('./components/StickyElement.vue').default);
 

@@ -1,6 +1,5 @@
 html, body {
     color: $textColor;
-    font-family: $primaryFont;
     font-size: $fontSize;
     font-weight: 400;
     background-color: #fff;
@@ -44,6 +43,7 @@ p {
     margin: 0 auto 1em auto;
     color: $textColor;
     font-weight: 300;
+    font-family: $secondaryFont;
 }
 
 a {
