@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="home-wrapper wrapper">
-		<div class="container py-5 text-center">
+		<div class="container text-center" style="padding-top: 120px;">
 			<h1>Erica Andrew Art</h1>
 		</div>
 
