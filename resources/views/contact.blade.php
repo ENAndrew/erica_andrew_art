@@ -8,7 +8,10 @@
 
 				<div class="row">
 					<div class="col-md-4 d-flex justify-content-center align-items-center">
-						<img class="img-fluid" src="/img/layout/Scarab_Sketch.jpg" alt="digital painting of a scarab beetle">
+						<picture>
+							<source srcset="/img/layout/Scarab_Sketch.webp" type="image/webp">
+							<img class="img-fluid" src="/img/layout/Scarab_Sketch.jpg" alt="digital painting of a scarab beetle">
+						</picture>
 					</div>
 
 					<div class="col-md-8">

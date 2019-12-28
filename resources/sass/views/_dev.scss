@@ -1,6 +1,10 @@
 .dev-wrapper {
 	.boxes {
+		flex-wrap: wrap;
+
 		.content-box {
+			margin: 1rem;
+
 			.box {
 				width: 250px;
 				height: 250px;
@@ -9,6 +13,11 @@
 
 				&:hover {
 					border-radius: 100%;
+				}
+
+				img {
+					max-width: 200px;
+					max-height: 200px;
 				}
 			}
 		}

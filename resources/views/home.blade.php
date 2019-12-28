@@ -7,7 +7,10 @@
 		</div>
 
 		<div class="container h-100 text-center">
-			<img src="/img/layout/Moth.jpg" class="img-fluid" alt="graphic design of a moth">
+			<picture>
+				<source srcset="/img/layout/Moth.webp" type="image/webp">
+				<img src="/img/layout/Moth.jpg" class="img-fluid" alt="graphic design of a moth">
+			</picture>
 		</div>
 	</div>
 @endsection
